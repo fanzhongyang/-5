@@ -1,0 +1,139 @@
+实验目的
+分析学生选课系统
+使用GUI窗体及其组件设计窗体界面
+完成学生选课过程业务逻辑编程
+基于文件保存并读取数据
+处理异常
+实验要求
+一、系统角色分析及类设计
+例如：学校有“人员”，分为“教师”和“学生”，教师教授“课程”，学生选择课程。
+定义每种角色人员的属性，及其操作方法。
+属性示例：	人员（编号、姓名、性别……）
+教师（编号、姓名、性别、所授课程、……）
+			学生（编号、姓名、性别、所选课程、……）
+			课程（编号、课程名称、上课地点、时间、授课教师、……）
+以上属性仅为示例，同学们可以自行扩展。
+
+二、要求:
+1、	设计GUI窗体，支持学生注册、课程新加、学生选课、学生退课、打印学生选课列表等操作。
+2、	基于事件模型对业务逻辑编程，实现在界面上支持上述操作。
+3、	针对操作过程中可能会出现的各种异常，做异常处理
+4、	基于输入/输出编程，支持学生、课程、教师等数据的读写操作。
+5、	基于Github.com提交实验，包括实验SRC源文件夹程序、README.MD实验报告文档。
+三，核心代码
+
+package zonghrxuanke;
+
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class zhuce implements ActionListener {
+
+	JFrame mainJFrame;
+	Container con;
+	JLabel labName,labPass,labRPass,labTitle,labEmpty1,labEmpty,labSex,labAge,labClass;
+	JTextField txtName,txtID,txtAge;
+	JPasswordField txtPass,txtRPass;
+	JButton resetBtn,regBtn,cancel;
+	JRadioButton mRadio,fRadio;
+	ButtonGroup sexBtnGroup;
+	static final String msg1[]={"100821","100822","100823"};
+	JComboBox Jcombobox1;
+	
+public zhuce(){
+	mainJFrame=new JFrame("用户注册");
+	con=mainJFrame.getContentPane();
+	con.setLayout(new FlowLayout());
+	
+	labTitle=new JLabel("<html><body><h1>用户注册     </h1> </body>  </html> ");
+	con.add(labTitle);
+	con.add(Box.createHorizontalStrut(30000));//用来换行
+	
+	labName=new JLabel("用户名:");
+	txtName=new JTextField();
+	txtName.setColumns(20);
+	con.add(labName);
+	con.add(txtName);
+	con.add(Box.createHorizontalStrut(30000));//用来换行
+	
+	labPass=new JLabel("密码:");
+	txtPass=new JPasswordField();
+	txtPass.setColumns(20);
+	con.add(labPass);
+	con.add(txtPass);
+	con.add(Box.createHorizontalStrut(30000));//用来换行
+	
+	labRPass=new JLabel("确认密码:");
+	txtRPass=new JPasswordField();
+	txtRPass.setColumns(20);
+	con.add(labRPass);
+	con.add(txtRPass);
+	con.add(Box.createHorizontalStrut(30000));//用来换行
+	
+	 
+	labSex=new JLabel("性别:");
+	mRadio=new JRadioButton("男",true);
+	mRadio.addActionListener(this);
+	fRadio=new JRadioButton("女",false);
+	fRadio.addActionListener(this);
+	sexBtnGroup=new ButtonGroup();
+	sexBtnGroup.add(mRadio);
+	sexBtnGroup.add(fRadio);
+	con.add(labSex);
+	con.add(mRadio);
+	con.add(fRadio);
+	
+	labAge=new JLabel("年龄:");
+	txtAge=new JTextField();
+	txtAge.setColumns(5);
+	con.add(labAge);
+	con.add(txtAge);
+	con.add(Box.createHorizontalStrut(30000));//用来换行
+	
+	labClass=new JLabel("所属班级:");
+	Jcombobox1=new JComboBox(msg1);
+	//Jcombobox1.addItemListener(this);
+	con.add(labClass);
+	con.add(Jcombobox1);
+	con.add(Box.createHorizontalStrut(30000));//用来换行
+	
+	regBtn=new JButton("注册");
+	regBtn.addActionListener(this); 
+	con.add(regBtn);
+	
+	resetBtn=new JButton("重置");
+	resetBtn.addActionListener(this);
+	con.add(resetBtn);
+	
+	cancel=new JButton("取消");
+	cancel.addActionListener(this);
+	con.add(cancel);
+	
+	mainJFrame.setSize(400,400);
+	mainJFrame.setVisible(true);
+	mainJFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+}
+public void actionPerformed(ActionEvent e){
+	if(e.getSource()==regBtn){
+		
+	}
+	if(e.getSource()==resetBtn){
+		txtName.setText(null);
+		txtPass.setText(null);
+		txtRPass.setText(null);
+		mRadio.setSelected(true);
+		txtAge.setText(null);
+		Jcombobox1.setSelectedIndex(0);
+		}
+	if(e.getSource()==cancel){
+		mainJFrame.setVisible(false);
+		denglu login=new denglu();
+		login.mainJFrame.setVisible(true);
+	}
+}
+}
+这是注册页面用于学生注册
+四，运行结果
+  见外面图
